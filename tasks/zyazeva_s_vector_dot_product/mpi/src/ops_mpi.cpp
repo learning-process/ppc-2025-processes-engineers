@@ -10,22 +10,22 @@
 
 namespace zyazeva_s_vector_dot_product {
 
-NesterovATestTaskMPI::NesterovATestTaskMPI(const InType &in) {
+ZyazevaSVecDotProduct::ZyazevaSVecDotProduct(const InType &in) {
   SetTypeOfTask(GetStaticTypeOfTask());
   GetInput() = in;
   GetOutput() = 0;
 }
 
-bool NesterovATestTaskMPI::ValidationImpl() {
+bool ZyazevaSVecDotProduct::ValidationImpl() {
   return (GetInput() > 0) && (GetOutput() == 0);
 }
 
-bool NesterovATestTaskMPI::PreProcessingImpl() {
+bool ZyazevaSVecDotProduct::PreProcessingImpl() {
   GetOutput() = 2 * GetInput();
   return GetOutput() > 0;
 }
 
-bool NesterovATestTaskMPI::RunImpl() {
+bool ZyazevaSVecDotProduct::RunImpl() {
   auto input = GetInput();
   if (input == 0) {
     return false;
@@ -64,7 +64,7 @@ bool NesterovATestTaskMPI::RunImpl() {
   return GetOutput() > 0;
 }
 
-bool NesterovATestTaskMPI::PostProcessingImpl() {
+bool ZyazevaSVecDotProduct::PostProcessingImpl() {
   GetOutput() -= GetInput();
   return GetOutput() > 0;
 }

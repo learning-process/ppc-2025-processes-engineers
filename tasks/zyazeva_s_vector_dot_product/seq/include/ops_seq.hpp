@@ -5,12 +5,12 @@
 
 namespace zyazeva_s_vector_dot_product {
 
-class NesterovATestTaskSEQ : public BaseTask {
+class ZyazevaSVecDotProductSEQ : public BaseTask {
  public:
   static constexpr ppc::task::TypeOfTask GetStaticTypeOfTask() {
     return ppc::task::TypeOfTask::kSEQ;
   }
-  explicit NesterovATestTaskSEQ(const InType &in);
+  explicit ZyazevaSVecDotProductSEQ(const InType &in);
 
  private:
   bool ValidationImpl() override;
