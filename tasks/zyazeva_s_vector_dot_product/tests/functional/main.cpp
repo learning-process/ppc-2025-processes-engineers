@@ -12,13 +12,13 @@
 #include <utility>
 #include <vector>
 
-#include "example_processes/common/include/common.hpp"
-#include "example_processes/mpi/include/ops_mpi.hpp"
-#include "example_processes/seq/include/ops_seq.hpp"
+#include "zyazeva_s_vector_dot_product/common/include/common.hpp"
+#include "zyazeva_s_vector_dot_product/mpi/include/ops_mpi.hpp"
+#include "zyazeva_s_vector_dot_product/seq/include/ops_seq.hpp"
 #include "util/include/func_test_util.hpp"
 #include "util/include/util.hpp"
 
-namespace nesterov_a_test_task_processes {
+namespace zyazeva_s_vector_dot_product {
 
 class NesterovARunFuncTestsProcesses : public ppc::util::BaseRunFuncTests<InType, OutType, TestType> {
  public:
@@ -82,4 +82,4 @@ INSTANTIATE_TEST_SUITE_P(PicMatrixTests, NesterovARunFuncTestsProcesses, kGtestV
 
 }  // namespace
 
-}  // namespace nesterov_a_test_task_processes
+}  // namespace zyazeva_s_vector_dot_product

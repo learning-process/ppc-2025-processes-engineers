@@ -1,9 +1,9 @@
 #pragma once
 
-#include "example_processes/common/include/common.hpp"
+#include "zyazeva_s_vector_dot_product/common/include/common.hpp"
 #include "task/include/task.hpp"
 
-namespace nesterov_a_test_task_processes {
+namespace zyazeva_s_vector_dot_product {
 
 class NesterovATestTaskSEQ : public BaseTask {
  public:
@@ -19,4 +19,4 @@ class NesterovATestTaskSEQ : public BaseTask {
   bool PostProcessingImpl() override;
 };
 
-}  // namespace nesterov_a_test_task_processes
+}  // namespace zyazeva_s_vector_dot_product
