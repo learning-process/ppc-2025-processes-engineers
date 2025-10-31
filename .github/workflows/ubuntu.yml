@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-gcc-install-${{ matrix.os }}
       - name: Extract installed package
@@ -101,7 +101,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-gcc-install-${{ matrix.os }}
       - name: Extract installed package
@@ -170,7 +170,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-clang-install-${{ matrix.os }}
       - name: Extract installed package
@@ -202,7 +202,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-clang-install-${{ matrix.os }}
       - name: Extract installed package
@@ -275,7 +275,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-clang-sanitizer-install-${{ matrix.os }}
       - name: Extract installed package
@@ -313,7 +313,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Download installed package
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ubuntu-clang-sanitizer-install-${{ matrix.os }}
       - name: Extract installed package
