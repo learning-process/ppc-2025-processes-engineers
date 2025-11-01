@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
-#include <vector>
+
 #include <random>
+#include <vector>
 
 #include "shkryleva_s_vec_min_val/common/include/common.hpp"
 #include "shkryleva_s_vec_min_val/mpi/include/ops_mpi.hpp"
@@ -18,12 +19,12 @@ class ShkrylevaSVecMinValPerfTests : public ppc::util::BaseRunPerfTests<InType, 
     std::random_device dev;
     std::mt19937 gen(dev());
     std::uniform_int_distribution<int> dist(-1000, 1000);
-    
+
     input_data_.resize(kVectorSize_);
     for (size_t i = 0; i < kVectorSize_; i++) {
       input_data_[i] = dist(gen);
     }
-    
+
     expected_min_ = -1500;
     input_data_[kVectorSize_ / 2] = expected_min_;
   }
@@ -41,8 +42,8 @@ TEST_P(ShkrylevaSVecMinValPerfTests, RunPerfModes) {
   ExecuteTest(GetParam());
 }
 
-const auto kAllPerfTasks =
-    ppc::util::MakeAllPerfTasks<InType, ShkrylevaSVecMinValMPI, ShkrylevaSVecMinValSEQ>(PPC_SETTINGS_shkryleva_s_vec_min_val);
+const auto kAllPerfTasks = ppc::util::MakeAllPerfTasks<InType, ShkrylevaSVecMinValMPI, ShkrylevaSVecMinValSEQ>(
+    PPC_SETTINGS_shkryleva_s_vec_min_val);
 
 const auto kGtestValues = ppc::util::TupleToGTestValues(kAllPerfTasks);
 

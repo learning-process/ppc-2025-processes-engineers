@@ -27,7 +27,7 @@ class ShkrylevaRunFuncTestsProcesses : public ppc::util::BaseRunFuncTests<InType
   void SetUp() override {
     TestType params = std::get<static_cast<std::size_t>(ppc::util::GTestParamIndex::kTestParams)>(GetParam());
     int test_case = std::get<0>(params);
-    
+
     switch (test_case) {
       case 0:
         input_data_ = {5, 3, 8, 1, 9};
@@ -75,17 +75,13 @@ TEST_P(ShkrylevaRunFuncTestsProcesses, FindMinValue) {
   ExecuteTest(GetParam());
 }
 
-const std::array<TestType, 5> kTestParam = {
-  std::make_tuple(0, "small_vector"),
-  std::make_tuple(1, "negative_vector"), 
-  std::make_tuple(2, "single_element"),
-  std::make_tuple(3, "all_equal"),
-  std::make_tuple(4, "large_values")
-};
+const std::array<TestType, 5> kTestParam = {std::make_tuple(0, "small_vector"), std::make_tuple(1, "negative_vector"),
+                                            std::make_tuple(2, "single_element"), std::make_tuple(3, "all_equal"),
+                                            std::make_tuple(4, "large_values")};
 
-const auto kTestTasksList =
-    std::tuple_cat(ppc::util::AddFuncTask<ShkrylevaSVecMinValMPI, InType>(kTestParam, PPC_SETTINGS_shkryleva_s_vec_min_val),
-                   ppc::util::AddFuncTask<ShkrylevaSVecMinValSEQ, InType>(kTestParam, PPC_SETTINGS_shkryleva_s_vec_min_val));
+const auto kTestTasksList = std::tuple_cat(
+    ppc::util::AddFuncTask<ShkrylevaSVecMinValMPI, InType>(kTestParam, PPC_SETTINGS_shkryleva_s_vec_min_val),
+    ppc::util::AddFuncTask<ShkrylevaSVecMinValSEQ, InType>(kTestParam, PPC_SETTINGS_shkryleva_s_vec_min_val));
 
 const auto kGtestValues = ppc::util::ExpandToValues(kTestTasksList);
 

@@ -15,8 +15,4 @@ SortUsingDeclarations: LexicographicNumeric
 InsertNewlineAtEOF: true
 LambdaBodyIndentation: OuterScope
 MaxEmptyLinesToKeep: 1
-KeepEmptyLines:
-  AtStartOfFile: false
-  AtStartOfBlock: false
-  AtEndOfFile: false
 LineEnding: LF

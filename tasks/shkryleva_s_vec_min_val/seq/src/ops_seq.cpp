@@ -1,8 +1,8 @@
 #include "shkryleva_s_vec_min_val/seq/include/ops_seq.hpp"
 
-#include <vector>
-#include <climits>
 #include <algorithm>
+#include <climits>
+#include <vector>
 
 namespace shkryleva_s_vec_min_val {
 

@@ -1,8 +1,8 @@
 #include "shkryleva_s_vec_min_val/mpi/include/ops_mpi.hpp"
 
-#include <vector>
-#include <climits>
 #include <algorithm>
+#include <climits>
+#include <vector>
 
 namespace shkryleva_s_vec_min_val {
 
@@ -16,13 +16,13 @@ bool ShkrylevaSVecMinValMPI::ValidationImpl() {
   return (!GetInput().empty()) && (GetOutput() == 0);
 }
 
-bool ShkrylevaSVecMinValMPI::PreProcessingImpl() { 
+bool ShkrylevaSVecMinValMPI::PreProcessingImpl() {
   int initialized;
   MPI_Initialized(&initialized);
   if (!initialized) {
     MPI_Init(nullptr, nullptr);
   }
-  
+
   GetOutput() = INT_MAX;
   return true;
 }
@@ -36,9 +36,9 @@ bool ShkrylevaSVecMinValMPI::RunImpl() {
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  const std::vector<int>* input_data_ptr = nullptr;
+  const std::vector<int> *input_data_ptr = nullptr;
   size_t total_size = 0;
-  
+
   if (world_rank == 0) {
     input_data_ptr = &GetInput();
     total_size = input_data_ptr->size();
@@ -62,34 +62,18 @@ bool ShkrylevaSVecMinValMPI::RunImpl() {
   std::vector<int> local_data(sendcounts[world_rank]);
 
   if (world_rank == 0) {
-    MPI_Scatterv(
-        input_data_ptr->data(),
-        sendcounts.data(), 
-        displacements.data(), 
-        MPI_INT,
-        local_data.data(),
-        sendcounts[world_rank], 
-        MPI_INT, 
-        0, 
-        MPI_COMM_WORLD
-    );
+    MPI_Scatterv(input_data_ptr->data(), sendcounts.data(), displacements.data(), MPI_INT, local_data.data(),
+                 sendcounts[world_rank], MPI_INT, 0, MPI_COMM_WORLD);
   } else {
-    MPI_Scatterv(
-        nullptr,
-        nullptr, 
-        nullptr, 
-        MPI_INT,
-        local_data.data(),
-        sendcounts[world_rank], 
-        MPI_INT, 
-        0, 
-        MPI_COMM_WORLD
-    );
+    MPI_Scatterv(nullptr, nullptr, nullptr, MPI_INT, local_data.data(), sendcounts[world_rank], MPI_INT, 0,
+                 MPI_COMM_WORLD);
   }
 
   int local_min = INT_MAX;
   for (int value : local_data) {
-    if (value < local_min) local_min = value;
+    if (value < local_min) {
+      local_min = value;
+    }
   }
 
   int global_min;
