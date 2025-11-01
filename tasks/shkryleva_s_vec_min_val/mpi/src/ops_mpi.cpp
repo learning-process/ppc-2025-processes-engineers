@@ -61,13 +61,8 @@ bool ShkrylevaSVecMinValMPI::RunImpl() {
 
   std::vector<int> local_data(sendcounts[world_rank]);
 
-  if (world_rank == 0) {
-    MPI_Scatterv(input_data_ptr->data(), sendcounts.data(), displacements.data(), MPI_INT, local_data.data(),
-                 sendcounts[world_rank], MPI_INT, 0, MPI_COMM_WORLD);
-  } else {
-    MPI_Scatterv(nullptr, nullptr, nullptr, MPI_INT, local_data.data(), sendcounts[world_rank], MPI_INT, 0,
-                 MPI_COMM_WORLD);
-  }
+  MPI_Scatterv((world_rank == 0) ? input_data_ptr->data() : nullptr, sendcounts.data(), displacements.data(), MPI_INT,
+               local_data.data(), sendcounts[world_rank], MPI_INT, 0, MPI_COMM_WORLD);
 
   int local_min = INT_MAX;
   for (int value : local_data) {
